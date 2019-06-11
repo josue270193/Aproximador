@@ -17,4 +17,8 @@
     <string name="puntoA_hint">0.0</string>
     <string name="puntoB">Punto B</string>
     <string name="puntoB_hint">1.0</string>
+    <string name="tab_derivada">Derivada</string>
+    <string name="tab_integral">Integral</string>
+    <string name="home">Inicio</string>
+    <string name="acerca">Acerca</string>
 </resources>

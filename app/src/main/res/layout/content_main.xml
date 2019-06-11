@@ -6,8 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_main"
-        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_aproximador"
+        tools:context=".AproximadorActivity"
         tools:layout_editor_absoluteY="56dp">
 
 
@@ -41,7 +41,7 @@
             app:layout_constraintTop_toBottomOf="@id/formulaLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-    >
+            android:baselineAligned="false">
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/comienzoXLayout"
                 android:layout_width="0dp"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@id/incrementoLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-    >
+            android:baselineAligned="false">
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/puntoALayout"
                 android:layout_width="0dp"

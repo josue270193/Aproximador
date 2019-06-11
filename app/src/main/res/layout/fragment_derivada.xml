@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:showIn="@layout/activity_aproximador"
+            tools:context=".AproximadorActivity"
+            tools:layout_editor_absoluteY="56dp">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/formulaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/formula"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formulaInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/formula_hint"
+                    android:nextFocusDown="@id/comienzoXInput"
+                    tools:text="@string/formula_hint"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+                android:id="@+id/layoutInicial"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/formulaLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:baselineAligned="false">
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/comienzoXLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/comienzoX"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+            >
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/comienzoXInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:nextFocusDown="@id/comienzoYInput"
+                        tools:text="@string/comienzoX_hint"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/comienzoYLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/comienzoY"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/comienzoYInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:nextFocusDown="@id/incrementoInput"
+                        tools:text="@string/comienzoY_hint"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/incrementoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/incremento"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutInicial"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp" android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/grafico">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/incrementoInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="numberDecimal"
+                    android:text="@string/incremento_hint"
+                    tools:text="@string/incremento_hint"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+                android:id="@+id/layoutAB"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/incrementoLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+        >
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/puntoALayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/puntoA"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/puntoAInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal|numberSigned"
+                        tools:text="@string/puntoA_hint"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/puntoBLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/puntoB"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/puntoBInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal|numberSigned"
+                        tools:text="@string/puntoB_hint"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/grafico"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/layoutAB"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="64dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

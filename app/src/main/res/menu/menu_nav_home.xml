@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
+    <item
+            android:id="@+id/derivadaFragment"
+            android:icon="@drawable/ic_euler"
+            android:title="@string/tab_derivada"
+            />
+    <item
+            android:id="@+id/integralFragment"
+            android:icon="@drawable/ic_integral"
+            android:title="@string/tab_integral"
+            />
+
+</menu>

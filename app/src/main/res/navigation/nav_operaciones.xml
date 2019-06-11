@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_aproximador"
+            app:startDestination="@id/derivadaFragment">
+
+    <fragment android:id="@+id/derivadaFragment"
+              android:name="app.aproximador.operacion.DerivadaFragment"
+              android:label="@string/tab_derivada"
+              tools:layout="@layout/fragment_derivada"/>
+
+    <fragment android:id="@+id/integralFragment"
+              android:name="app.aproximador.operacion.IntegralFragment"
+              android:label="@string/tab_integral"
+              tools:layout="@layout/fragment_integral"/>
+</navigation>

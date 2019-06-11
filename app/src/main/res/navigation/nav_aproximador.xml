@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_aproximador"
+            app:startDestination="@id/homeFragment">
+
+    <fragment android:id="@+id/homeFragment"
+              android:name="app.aproximador.HomeFragment"
+              android:label="@string/home"
+              tools:layout="@layout/fragment_home">
+    </fragment>
+
+    <fragment android:id="@+id/acercaFragment"
+              android:name="app.aproximador.AcercaFragment"
+              android:label="@string/acerca"
+              tools:layout="@layout/fragment_acerca">
+    </fragment>
+</navigation>
