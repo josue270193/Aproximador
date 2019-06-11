@@ -1,5 +1,5 @@
 <resources>
-    <style name="BaseAppTheme" parent="Theme.MaterialComponents.DayNight">
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

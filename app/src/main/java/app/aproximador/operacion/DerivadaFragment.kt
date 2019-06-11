@@ -12,7 +12,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import app.aproximador.R
 import app.aproximador.databinding.FragmentDerivadaBinding
-import app.aproximador.util.CalculoUtil
+import app.aproximador.util.CalculoDerivadaUtil
 import app.aproximador.view.MyMarkerView
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.data.Entry
@@ -20,7 +20,10 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.utils.EntryXComparator
 import kotlinx.android.synthetic.main.fragment_derivada.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DerivadaFragment : Fragment() {
@@ -39,12 +42,18 @@ class DerivadaFragment : Fragment() {
     override fun onViewCreated(viewParent: View, savedInstanceState: Bundle?) {
         super.onViewCreated(viewParent, savedInstanceState)
 
+        // CONFIG GRAFICADOR
+        grafico.setNoDataText(getString(R.string.mensaje_vacio))
+
         // CORRECCIONES PARA EL TEXTO HINT EN FOCO
         formulaInput.setOnFocusChangeListener { view, b -> fixHintEditText(view as EditText, b, R.string.formula_hint) }
         comienzoXInput.setOnFocusChangeListener { view, b -> fixHintEditText(view as EditText, b, R.string.comienzoX_hint) }
         comienzoYInput.setOnFocusChangeListener { view, b -> fixHintEditText(view as EditText, b, R.string.comienzoY_hint) }
+        puntoAInput.setOnFocusChangeListener { view, b -> fixHintEditText(view as EditText, b, R.string.puntoA_hint) }
+        puntoBInput.setOnFocusChangeListener { view, b -> fixHintEditText(view as EditText, b, R.string.puntoB_hint) }
         incrementoInput.setOnFocusChangeListener { view, b -> fixHintEditText(view as EditText, b, R.string.incremento_hint) }
 
+        comienzoXInput.doAfterTextChanged { input: Editable? -> puntoAInput.text = input }
         incrementoInput.doAfterTextChanged { input: Editable? -> Log.i(CALCULO_TAG, input.toString()) }
         incrementoInput.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -53,10 +62,8 @@ class DerivadaFragment : Fragment() {
                     comienzoXInput.text.toString().toFloat(),
                     comienzoYInput.text.toString().toFloat(),
                     incrementoInput.text.toString().toFloat(),
-//                    puntoAInput.text.toString().toFloat(),
-//                    puntoBInput.text.toString().toFloat()
-                    0f,
-                    1f
+                    puntoAInput.text.toString().toFloat(),
+                    puntoBInput.text.toString().toFloat()
                 )
                 true
             } else false
@@ -79,34 +86,35 @@ class DerivadaFragment : Fragment() {
         puntoA: Float,
         puntoB: Float
     ) {
-        var calculo: CalculoUtil
-//        Log.i(CALCULO_TAG, "Funcion: ${calculo.formula}")
-//        Log.i(CALCULO_TAG, "Syntax: ${calculo.checkSyntax()} - Expresion: ${calculo.expression()} - Resultado: ${calculo.calcular()}")
+        var calculoDerivada: CalculoDerivadaUtil
         var puntos: ArrayList<Entry>
         var sets: ArrayList<ILineDataSet> = ArrayList()
         var dataSet: LineDataSet
 
-        calculo = CalculoUtil(formula, valorX, valorY)
-        puntos = calculo.obtenerPuntos(incremento, puntoA, puntoB)
+        calculoDerivada = CalculoDerivadaUtil(formula, valorX, valorY)
+        puntos = calculoDerivada.obtenerPuntos(incremento, puntoA, puntoB)
         dataSet = LineDataSet(puntos, "Derivada+")
-        dataSet.color = ColorTemplate.VORDIPLOM_COLORS[0];
+        dataSet.color = ColorTemplate.VORDIPLOM_COLORS[0]
         sets.add(dataSet)
 
-//        calculo = CalculoUtil(formula, valorX, valorY)
-//        puntos = calculo.obtenerPuntosNegativo(incremento, puntoA, puntoB)
-//        dataSet = LineDataSet(puntos, "Derivada-")
-//        dataSet.color = ColorTemplate.VORDIPLOM_COLORS[1];
-//        sets.add(dataSet)
+        calculoDerivada = CalculoDerivadaUtil(formula, valorX, valorY)
+        puntos = calculoDerivada.obtenerPuntosNegativo(incremento, puntoA, puntoB)
+        Collections.sort(puntos, EntryXComparator())
+        dataSet = LineDataSet(puntos, "Derivada-")
+        dataSet.color = ColorTemplate.VORDIPLOM_COLORS[1]
+        sets.add(dataSet)
 
         mostrarGrafico( sets )
     }
 
     private fun mostrarGrafico(dataSet: ArrayList<ILineDataSet>) {
         val lineData = LineData(dataSet)
+        lineData.setDrawValues(false)
 
         grafico.data = lineData
         grafico.description.isEnabled = false
-        grafico.animateX(1000)
+        grafico.legend.isEnabled = false
+        grafico.animateXY(1000, 1000)
 
         val mv = MyMarkerView(requireActivity(), R.layout.custom_marker_view)
         mv.chartView = grafico

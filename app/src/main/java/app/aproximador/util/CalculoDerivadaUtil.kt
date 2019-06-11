@@ -6,7 +6,7 @@ import org.mariuszgromada.math.mxparser.Expression
 import org.mariuszgromada.math.mxparser.Function
 
 @SuppressLint("DefaultLocale")
-class CalculoUtil(_formula: String, _valorX: Float, _valorY: Float) {
+class CalculoDerivadaUtil(_formula: String, _valorX: Float, _valorY: Float) {
 
     var formula: String = _formula.toLowerCase()
         set(value) { field = value.toLowerCase() }
