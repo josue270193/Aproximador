@@ -16,10 +16,13 @@
     <string name="puntoA">Punto A</string>
     <string name="puntoA_hint">0.0</string>
     <string name="puntoB">Punto B</string>
-    <string name="puntoB_hint">1.0</string>
+    <string name="puntoB_hint">1</string>
     <string name="tab_derivada">Derivada</string>
     <string name="tab_integral">Integral</string>
     <string name="home">Inicio</string>
     <string name="acerca">Acerca</string>
     <string name="mensaje_vacio">Complete los datos</string>
+    <string name="formula_integra_hint">x ^ 2</string>
+    <string name="intervalo_hint">2</string>
+    <string name="intervalo">Intervalo</string>
 </resources>

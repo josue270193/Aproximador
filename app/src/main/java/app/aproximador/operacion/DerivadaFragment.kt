@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_derivada.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 class DerivadaFragment : Fragment() {
 
     private val CALCULO_TAG: String = "CALCULO"
@@ -108,10 +107,10 @@ class DerivadaFragment : Fragment() {
     }
 
     private fun mostrarGrafico(dataSet: ArrayList<ILineDataSet>) {
-        val lineData = LineData(dataSet)
-        lineData.setDrawValues(false)
+        val data = LineData(dataSet)
+        data.setDrawValues(false)
 
-        grafico.data = lineData
+        grafico.data = data
         grafico.description.isEnabled = false
         grafico.legend.isEnabled = false
         grafico.animateXY(1000, 1000)
